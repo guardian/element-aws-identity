@@ -1,0 +1,57 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../google-signin/google-signin.html">
+
+<!--
+Element exporting AWS credentials using Web Identity Federation.
+
+`<aws-identity>` returns a configuration object referencing a set of
+temporary IAM credentials that can then be used by AWS services, by
+trading a third-party token received from a nested provider.
+
+Currently only `<google-signin>` is supported.
+
+##### Example
+
+    <aws-identity accountId="AWS_ACCOUNT_ID"
+                  roleName="AWS_ROLE_NAME"
+                  sink="{{config}}">
+      <google-signin clientId="GOOGLE_APP_ID.apps.googleusercontent.com"
+                     scopes="https://www.googleapis.com/auth/userinfo.email">
+      </google-signin>
+    </aws-identity>
+
+@element aws-identity
+@blurb Element exporting AWS credentials using Web Identity Federation.
+@status alpha
+-->
+<polymer-element name="aws-identity" attributes="accountId roleName sink">
+  <template>
+    <content></content>
+  </template>
+
+  <script src="../aws-sdk-js/dist/aws-sdk.js"></script>
+  <script>
+    Polymer('aws-identity', {
+
+      ready: function() {
+        var roleArn = 'arn:aws:iam::' + this.accountId + ':role/' + this.roleName;
+
+        // TODO: support Facebook and AWS federation
+
+        var googleClient = this.querySelector('google-signin');
+        if (googleClient) {
+          googleClient.addEventListener('google-signin-success', function(e) {
+            var authResult = e.detail.result;
+            this.sink = {
+              credentials: new AWS.WebIdentityCredentials({
+                RoleArn: roleArn,
+                WebIdentityToken: authResult.id_token
+              })
+            };
+            this.classList.add('signed-in');
+          }.bind(this));
+        }
+      }
+    });
+  </script>
+</polymer-element>

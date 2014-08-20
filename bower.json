@@ -1,0 +1,21 @@
+{
+  "name": "aws-identity",
+  "version": "0.1.0",
+  "authors": [
+    "Sébastien Cevey <seb.cevey@theguardian.com>"
+  ],
+  "description": "Element exporting AWS credentials using Web Identity Federation",
+  "keywords": "aws, identity, federation, iam, configuration, polymer, web-components",
+  "main": "aws-identity.html",
+  "license": "Apache-2",
+  "homepage": "https://github.com/guardian/element-aws-identity/",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.4",
+    "polymer-test-tools": "Polymer/polymer-test-tools#~0.3.3",
+    "google-signin": "GoogleWebComponents/google-signin#~0.0.8",
+    "aws-sdk-js": "~2.0.14"
+  }
+}
