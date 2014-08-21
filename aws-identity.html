@@ -14,6 +14,7 @@ Currently only `<google-signin>` is supported.
 
     <aws-identity accountId="AWS_ACCOUNT_ID"
                   roleName="AWS_ROLE_NAME"
+                  region="AWS_REGION"
                   sink="{{config}}">
       <google-signin clientId="GOOGLE_APP_ID.apps.googleusercontent.com"
                      scopes="https://www.googleapis.com/auth/userinfo.email">
@@ -24,7 +25,7 @@ Currently only `<google-signin>` is supported.
 @blurb Element exporting AWS credentials using Web Identity Federation.
 @status alpha
 -->
-<polymer-element name="aws-identity" attributes="accountId roleName sink">
+<polymer-element name="aws-identity" attributes="accountId roleName region sink">
   <template>
     <content></content>
   </template>
@@ -46,7 +47,8 @@ Currently only `<google-signin>` is supported.
               credentials: new AWS.WebIdentityCredentials({
                 RoleArn: roleArn,
                 WebIdentityToken: authResult.id_token
-              })
+              }),
+              region: this.region
             };
             this.classList.add('signed-in');
           }.bind(this));
