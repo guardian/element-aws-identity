@@ -13,9 +13,9 @@
     "**/.*"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#~0.3.4",
-    "polymer-test-tools": "Polymer/polymer-test-tools#~0.3.3",
-    "google-signin": "GoogleWebComponents/google-signin#~0.0.8",
-    "aws-sdk-js": "~2.0.14"
+    "polymer": "~0.4.1",
+    "polymer-test-tools": "Polymer/polymer-test-tools#~0.4.1",
+    "google-signin": "GoogleWebComponents/google-signin#~0.1.0",
+    "aws-sdk-js": "~2.0.18"
   }
 }
