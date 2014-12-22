@@ -15,7 +15,7 @@
   "dependencies": {
     "polymer": "^0.5.2",
     "polymer-test-tools": "Polymer/polymer-test-tools#^0.5.2",
-    "google-signin": "GoogleWebComponents/google-signin#^0.2.0",
+    "google-signin": "^0.2.0",
     "aws-sdk-js": "^2.1.4"
   }
 }
